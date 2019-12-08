@@ -14,13 +14,18 @@ import java.util.Map;
 
 public class jdbcHelper {
 
-    public static <T> List<T> query(final NamedParameterJdbcTemplate jdbcTemplate, final String sql, final Object prms, final Class<T> clazz) {
+    public static <T> List<T> query(
+            final NamedParameterJdbcTemplate jdbcTemplate,
+            final String sql,
+            final Object prms,
+            final Class<T> clazz) {
         if (jdbcTemplate == null)
             throw new IllegalArgumentException("Argument \"jdbcTemplate\" cannot be null!");
         if (sql == null)
             throw new IllegalArgumentException("Argument \"sql\" cannot be null!");
 
-        final Map<String, ?> paramMap = mapHelper.decodeParams(prms);
+        final Map<String, Object> paramMap = mapHelper.decodeParams(prms);
+        paramMap.put("BIO_CURUSR_UID", "qwe");
 
         List<T> rslt = jdbcTemplate.query(
                 sql,

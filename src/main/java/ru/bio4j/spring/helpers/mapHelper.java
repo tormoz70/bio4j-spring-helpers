@@ -84,13 +84,13 @@ public class mapHelper {
         return result;
     }
 
-    public static Map<String, ?> decodeParams(Object params) {
-        Map<String, ?> rslt = new HashMap<>();
+    public static Map<String, Object> decodeParams(Object params) {
+        Map<String, Object> rslt = new HashMap<>();
         if(params != null){
             if(params instanceof List<?>)
                 rslt = Paramus.toMap((List<Param>) params);
             else if(params instanceof Map)
-                rslt = (Map<String, ?>)params;
+                rslt = (Map<String, Object>)params;
             else if(params instanceof ABean)
                 rslt = mapHelper.abeanToMap((ABean) params);
             else
